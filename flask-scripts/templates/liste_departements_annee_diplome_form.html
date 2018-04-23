@@ -1,0 +1,14 @@
+<p>Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes :</p>
+<form method="POST" action="liste_departements_annee_diplome">
+	<select name="annee">
+		{% for annee in annees %}
+			<option value="{{annee[0]}}">{{annee[0]}}</option>
+		{% endfor %}
+	</select>
+	<select name="diplome">
+		{% for diplome in diplomes %}
+			<option value="{{diplome[0]}}">{{diplome[1]}}</option>
+		{% endfor %}
+	</select>
+	<input type="submit" value="Soumettre"/>
+</form>

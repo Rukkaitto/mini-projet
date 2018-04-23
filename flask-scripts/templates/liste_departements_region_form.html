@@ -1,0 +1,10 @@
+<p>Liste des départements par région :</p>
+<form method="POST" action="liste_departements_region">
+	<select name="region">
+		{% for region in regions %}
+		<option value="{{region[1]}}">{{region[2]}}</option>
+		{% endfor %}
+	</select>
+	<input type="submit" value="Soumettre"/>
+</form>
+
