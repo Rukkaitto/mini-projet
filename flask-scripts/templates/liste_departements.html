@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
+</head>
+<body>
+    <a href="/">Accueil</a><br><br>
+    <h1>Liste des départements de {{region}}</h1>
+    {% for dept in depts %}
+        {{dept[1]}} - {{dept[0]}}<br>
+    {% endfor %}
+<footer>Lucas GOUDIN et Bjorn GIRAUD</footer>
+</body>
+</html>

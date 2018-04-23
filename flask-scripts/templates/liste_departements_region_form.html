@@ -1,10 +1,19 @@
-<p>Liste des départements par région :</p>
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+<a href="/">Accueil</a><br/>
+<h1>Liste des départements par région :</h1>
 <form method="POST" action="liste_departements_region">
 	<select name="region">
 		{% for region in regions %}
-		<option value="{{region[1]}}">{{region[2]}}</option>
+		<option value="{{region[2]}}">{{region[2]}}</option>
 		{% endfor %}
 	</select>
 	<input type="submit" value="Soumettre"/>
 </form>
-
+<footer>Lucas GOUDIN et Bjorn GIRAUD</footer>
+</body>
+</html>

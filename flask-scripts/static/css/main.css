@@ -1,0 +1,20 @@
+html {
+    min-height: 100%;
+    background: linear-gradient(#edeeff, white);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+}
+.insee_img {
+    float: right;
+    width: 300px;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+  }

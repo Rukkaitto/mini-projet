@@ -1,4 +1,11 @@
-<p>Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes :</p>
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+<a href="/">Accueil</a><br/>
+<h1>Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes :</h1>
 <form method="POST" action="liste_departements_annee_diplome">
 	<select name="annee">
 		{% for annee in annees %}
@@ -12,3 +19,6 @@
 	</select>
 	<input type="submit" value="Soumettre"/>
 </form>
+<footer>Lucas GOUDIN et Bjorn GIRAUD</footer>
+</body>
+</html>
