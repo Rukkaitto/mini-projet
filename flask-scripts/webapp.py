@@ -8,6 +8,9 @@ sys.setdefaultencoding('utf8')
 #NE PAS MODIFIER LA LIGNE SUIVANTE
 app = Flask(__name__)
 DATABASE = 'miniproj'
+HOST = 'dbserver'
+DATABASE_SERVER = 'bpinaud'
+USER = 'lgoudin'
             
 @app.route("/")
 def hello():
@@ -16,32 +19,31 @@ def hello():
 
 @app.route("/liste_regions", methods=['GET'])
 def liste_regions():
-    page = '<h2>Liste des regions Francaises :</h2>'
-    regions = query_db_local(DATABASE, 'select nom from regions')
-    #regions = query_db('dbserver', 'bpinaud', 'lgoudin', 'select nom from regions')
+    page = '<a href="/">Accueil</a><br/><h2>Liste des regions Francaises :</h2>'
+    regions = query_db_local(DATABASE, 'select nom from regions order by nom asc')
+    #regions = query_db(HOST, DATABASE_SERVER, USER, 'select nom from regions order by nom asc')
     for i in regions:
         page = page + i[0] + '<br>'
     return page
 
 @app.route("/liste_departements_region_request")
 def liste_departements_region_request():
-    regions = query_db_local(DATABASE, 'select * from regions')
+    regions = query_db_local(DATABASE, 'select * from regions order by nom asc')
+    #regions = query_db(HOST, DATABASE_SERVER, USER, 'select * from regions order by nom asc')
     return render_template('liste_departements_region_form.html', regions=regions)
     
 @app.route("/liste_departements_region", methods=['POST'])
 def liste_departements_region():
-    region = request.form["region"].upper().strip()
-    page="<h2>Liste des departements de " + request.form["region"].strip().capitalize() + " : </h2>"
-    departements = query_db_local(DATABASE, 'select d.nom, d.num from regions r, departements d where r.num=d.region and r.nommaj=\'{}\' order by d.nom asc'.format(region))
-    #departements = query_db('dbserver', 'bpinaud', 'lgoudin', 'select d.nom, d.num from regions r, departements d where r.num=d.region and r.nommaj=\'{}\' order by d.nom asc'.format(region))
-    for i in departements:
-        page = page + i[1] + "  " + i[0] + "<br/>"
-    return page
+    region = request.form["region"]
+    departements = query_db_local(DATABASE, 'select d.nom, d.num from regions r, departements d where r.num=d.region and r.nom=\'{}\' order by d.nom asc'.format(region))
+    #departements = query_db('dbserver', 'bpinaud', 'lgoudin', 'select d.nom, d.num from regions r, departements d where r.num=d.region and r.nom=\'{}\' order by d.nom asc'.format(region))
+    return render_template('liste_departements.html', depts=departements, region=region)
 
 @app.route("/liste_departements_annee_diplome_request")
 def liste_departements_annee_diplome_request():
     annees = query_db_local(DATABASE, 'select distinct annee from nb_diplomes_dept order by annee asc')
     diplomes = query_db_local(DATABASE, 'select * from niveaux_diplomes')
+    #diplomes = query_db(HOST, DATABASE_SERVER, USER, 'select * from niveaux_diplomes')
     return render_template("liste_departements_annee_diplome_form.html", annees=annees, diplomes=diplomes)
 
 @app.route("/liste_departements_annee_diplome", methods=['POST'])
@@ -50,6 +52,7 @@ def liste_departements_annee_diplome():
     annee = request.form["annee"]
     niveau = request.form["diplome"]
     depts = query_db_local(DATABASE, 'select distinct nom from departements dp, nb_diplomes_dept nb where dp.num=nb.dept and nb.annee={} and nb.niveau={} and (select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'H\')>(select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'F\')'.format(annee,niveau,annee,niveau,annee,niveau))
+    #depts = query_db(HOST, DATABASE_SERVER, USER, 'select distinct nom from departements dp, nb_diplomes_dept nb where dp.num=nb.dept and nb.annee={} and nb.niveau={} and (select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'H\')>(select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'F\')'.format(annee,niveau,annee,niveau,annee,niveau))
     
     if depts:
         for dept in depts:

@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+html {
+    height: 100%;
+    background: linear-gradient(#e2ffe5,#f2fff2);
+}
+.insee_img {
+    float: right;
+    width: 300px;
+}

@@ -1,18 +1,20 @@
+<!doctype html>
 <html>
 
 <head>
-
+    <title>Mini-Projet</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 
 <body>
 
-<p>Lucas GOUDIN</p>
+<p>Lucas GOUDIN et Bjorn GIRAUD</p>
 </br>
 <a href="{{ url_for('liste_regions') }}">Liste des régions</a><br/>
 <a href="{{ url_for('liste_departements_region_request') }}">Liste des départements d'une région</a><br/>
 <a href="{{ url_for('liste_departements_annee_diplome_request') }}">Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes</a><br/>
 
-<img src="{{ url_for('static', filename='insee.jpg') }}" width="100" height="100"><br/>
+<img class="insee_img" src="{{ url_for('static', filename='insee.jpg') }}"><br/>
 
 </body>
 
