@@ -18,3 +18,9 @@ footer {
     background-color: #efefef;
     text-align: center;
   }
+
+h1 {
+    color: #af0a0f;
+    text-align: center;
+    font-weight: bold;
+}
