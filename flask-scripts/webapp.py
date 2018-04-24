@@ -55,7 +55,7 @@ def liste_departements_annee_diplome():
         page='Il n\'existe aucun departement dans lequel il y a plus de femmes diplomees que d\'hommes a cette annee et a ce niveau de diplome.'
     return page
 
-##########################################################################################
+#############################################################################################################################################################################
 
 def get_db_local(dbname):
     try:
@@ -98,7 +98,7 @@ def query_db(host, dbname, user, command):
         print("Command executed successfully!")
         return rv
     except Exception as e:
-        print('Error when running command "{}": {}'.format(command, str(e)))
+        return('Error when running command "{}": {}'.format(command, str(e)))
 
     
 
