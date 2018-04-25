@@ -4,9 +4,12 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
-<a href="/">Accueil</a><br/>
+	<header>
+		<a href="/">Accueil</a><br/>
+	</header>
+<br>
 <h1>Liste des départements par région :</h1>
-<form method="POST" action="liste_departements_region">
+<form method="POST" action="{{ url_for('liste_departements_region') }}">
 	<select name="region">
 		{% for region in regions %}
 		<option value="{{region[2]}}">{{region[2]}}</option>

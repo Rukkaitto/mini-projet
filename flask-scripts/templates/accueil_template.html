@@ -10,12 +10,25 @@
 <br>
 <h1>Mini-Projet</h1>
 </br>
-<a href="{{ url_for('liste_regions') }}">Liste des régions</a><br/>
-<a href="{{ url_for('liste_departements_region_request') }}">Liste des départements d'une région</a><br/>
-<a href="{{ url_for('liste_departements_annee_diplome_request') }}">Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes</a><br/>
-
+<ol>
+    <li>
+        <a href="{{ url_for('liste_regions') }}">Liste des régions</a><br/>
+    </li>
+    <li>
+        <a href="{{ url_for('liste_departements_region_request') }}">Liste des départements d'une région</a><br/>
+    </li>
+    <li>
+        <a href="{{ url_for('liste_departements_annee_diplome_request') }}">Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes</a><br/>
+    </li>
+    <li>
+        <a href="{{ url_for('liste_num_request') }}">Liste des numéros des diplômés</a><br/>
+    </li>
+    <li>
+        <a href="{{ url_for('wiki_dept') }}">Liste des wikis des départements</a><br/>
+    </li>
+</ol>
 <img class="insee_img" src="{{ url_for('static', filename='insee.jpg') }}"><br/>
-<footer>Lucas GOUDIN et Bjorn GIRAUD</footer>
+<footer>Lucas GOUDIN</footer>
 </body>
 
 </html>

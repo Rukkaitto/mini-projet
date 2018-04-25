@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Liste des départements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <header>
+        <a href="/">Accueil</a><br/>
+    </header>
+    <br>
+    {% if depts %}
+        <h1>Liste des départements pour lesquels il y a eu plus de diplômés femmes que hommes en {{annee}} pour le diplôme "{{diplome_name[0][0]}}" :</h1>
+        {% for dept in depts %}
+            {{dept[0]}}<br>
+        {% endfor %}
+    {% else %}
+        <br>
+        <h3>Il n'existe aucun département dans lequel il y a plus de femmes diplomées que d'hommes à cette année et a ce niveau de diplôme.</h3>
+    {% endif %}
+    <footer>Lucas GOUDIN</footer>
+</body>
+</html>

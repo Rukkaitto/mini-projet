@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Liste des numéros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <header>
+        <a href="/">Accueil</a><br/>
+    </header>
+    <br>
+    <h1>Liste des numéros d'étudiants :</h1>
+    <form method="POST" action="{{ url_for('liste_num') }}">
+        <select name="diplome">
+            {% for diplome in diplomes %}
+                <option value={{diplome[0]}}>{{diplome[1]}}</option>
+            {% endfor %}
+        </select>
+        <select name="dept">
+            {% for dept in depts %}
+                <option value={{dept[0]}}>{{dept[2]}}</option>
+            {% endfor %}
+        </select>
+        <select name="annee">
+            {% for annee in annees %}
+                <option value={{annee[0]}}>{{annee[0]}}</option>
+            {% endfor %}
+        </select>
+        <select name="age">
+            {% for age in ages %}
+                <option value={{age[0]}}>{{age[1]}}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Soumettre">
+
+    </form>
+</body>
+</html>

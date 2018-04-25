@@ -4,9 +4,12 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
-<a href="/">Accueil</a><br/>
+	<header>
+		<a href="/">Accueil</a><br/>
+	</header>
+<br>
 <h1>Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes :</h1>
-<form method="POST" action="liste_departements_annee_diplome">
+<form method="POST" action="{{ url_for('liste_departements_annee_diplome') }}">
 	<select name="annee">
 		{% for annee in annees %}
 			<option value="{{annee[0]}}">{{annee[0]}}</option>

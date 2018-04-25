@@ -5,11 +5,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
 </head>
 <body>
-    <a href="/">Accueil</a><br/>
+    <header>
+        <a href="/">Accueil</a><br/>
+    </header>
+    <br>
     <h1>Liste des régions Françaises :</h1>
     {% for region in regions %}
         {{region[0]}}<br>
     {% endfor %}
-<footer>Lucas GOUDIN et Bjorn GIRAUD</footer>
+<footer>Lucas GOUDIN</footer>
 </body>
 </html>

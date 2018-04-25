@@ -42,18 +42,52 @@ def liste_departements_annee_diplome_request():
 
 @app.route("/liste_departements_annee_diplome", methods=['POST'])
 def liste_departements_annee_diplome():
-    page=""
     annee = request.form["annee"]
     niveau = request.form["diplome"]
     #depts = query_db_local(DATABASE, 'select distinct nom from departements dp, nb_diplomes_dept nb where dp.num=nb.dept and nb.annee={} and nb.niveau={} and (select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'H\')>(select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'F\')'.format(annee,niveau,annee,niveau,annee,niveau))
-    depts = query_db(HOST, DATABASE_SERVER, USER, 'select distinct nom from departements dp, nb_diplomes_dept nb where dp.num=nb.dept and nb.annee={} and nb.niveau={} and (select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'H\')>(select count(*) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'F\')'.format(annee,niveau,annee,niveau,annee,niveau))
+    depts = query_db(HOST, DATABASE_SERVER, USER, 'select distinct nom from departements dp, nb_diplomes_dept nb where dp.num=nb.dept and nb.annee={} and nb.niveau={} and (select count(num) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'H\')>(select count(num) from nb_diplomes_dept where annee={} and niveau={} and sexe=\'F\')'.format(annee,niveau,annee,niveau,annee,niveau))
+    #diplome_name = query_db_local(DATABASE, 'select label from niveaux_diplomes where id={}'.format(niveau))
+    diplome_name = query_db(HOST, DATABASE_SERVER, USER, 'select label from niveaux_diplomes where id={}'.format(niveau))
+    return render_template('liste_departements_annee_diplome.html', annee=annee, depts=depts, diplome_name=diplome_name)
+
+@app.route("/liste_num_request")
+def liste_num_request():
+    #diplomes = query_db_local(DATABASE, 'select * from niveaux_diplomes')
+    diplomes = query_db(HOST, DATABASE_SERVER, USER, 'select * from niveaux_diplomes') 
+    #annees = query_db_local(DATABASE, 'select distinct annee from nb_diplomes_dept order by annee asc')
+    annees = query_db(HOST, DATABASE_SERVER, USER, 'select distinct annee from nb_diplomes_dept order by annee asc')
+    #depts = query_db_local(DATABASE, 'select * from departements order by nom asc')
+    depts = query_db(HOST, DATABASE_SERVER, USER, 'select * from departements order by nom asc')
+    #ages = query_db_local(DATABASE, 'select * from tranches_ages')
+    ages = query_db(HOST, DATABASE_SERVER, USER, 'select * from tranches_ages')
+    return render_template('liste_num_form.html', diplomes=diplomes, annees=annees, depts=depts, ages=ages)
+
+@app.route("/liste_num", methods=['POST'])
+def liste_num():
+    diplome = request.form["diplome"]
+    annee = request.form["annee"]
+    dept = request.form["dept"]
+    age = request.form["age"]
     
-    if depts:
-        for dept in depts:
-            page += dept[0] + '<br>'
-    else:
-        page='Il n\'existe aucun departement dans lequel il y a plus de femmes diplomees que d\'hommes a cette annee et a ce niveau de diplome.'
-    return page
+    #count = query_db_local(DATABASE, 'select count(*) from nb_diplomes_dept where niveau={} and annee={} and dept=\'{}\' and age={}'.format(diplome,annee,dept,age))
+    count = query_db(HOST, DATABASE_SERVER, USER, 'select count(*) from nb_diplomes_dept where niveau={} and annee={} and dept=\'{}\' and age={}'.format(diplome,annee,dept,age))
+    #nums = query_db_local(DATABASE, 'select num from nb_diplomes_dept where niveau={} and annee={} and dept=\'{}\' and age={}'.format(diplome,annee,dept,age))
+    nums = query_db(HOST, DATABASE_SERVER, USER, 'select num from nb_diplomes_dept where niveau={} and annee={} and dept=\'{}\' and age={}'.format(diplome,annee,dept,age))
+    #age_name = query_db_local(DATABASE, 'select label from tranches_ages where id={}'.format(age))
+    age_name = query_db(HOST, DATABASE_SERVER, USER, 'select label from tranches_ages where id={}'.format(age))
+    #diplome_name = query_db_local(DATABASE, 'select label from niveaux_diplomes where id={}'.format(diplome))
+    diplome_name = query_db(HOST, DATABASE_SERVER, USER, 'select label from niveaux_diplomes where id={}'.format(diplome))
+    #dept_name = query_db_local(DATABASE, 'select nom from departements where num=\'{}\''.format(dept))
+    dept_name = query_db(HOST, DATABASE_SERVER, USER, 'select nom from departements where num=\'{}\''.format(dept))
+    return render_template('liste_num.html', nums=nums, count=count, diplome_name=diplome_name, annee=annee, age_name=age_name, dept_name=dept_name)
+
+@app.route("/wiki_dept")
+def wiki_dept():
+    #depts = query_db_local(DATABASE, 'select * from departements order by nom asc')
+    depts = query_db(HOST, DATABASE_SERVER, USER, 'select * from departements order by nom asc')
+    return render_template('wiki_dept.html', depts=depts)
+
+
 
 #############################################################################################################################################################################
 

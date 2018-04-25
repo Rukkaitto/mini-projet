@@ -5,22 +5,38 @@ html {
     font-size: 10pt;
 }
 .insee_img {
-    float: right;
-    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 150px;
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
     background-color: #edeeff;
     text-align: center;
-  }
+}
+
+header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #edeeff;
+}
 
 h1 {
     color: #af0a0f;
     text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    color: #af0a0f;
     font-weight: bold;
 }
