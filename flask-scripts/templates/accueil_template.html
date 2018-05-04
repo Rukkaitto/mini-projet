@@ -21,11 +21,15 @@
         <a href="{{ url_for('liste_departements_annee_diplome_request') }}">Liste des départements où il y a eu plus de diplômées femmes que de diplômés hommes</a><br/>
     </li>
     <li>
-        <a href="{{ url_for('liste_num_request') }}">Liste des numéros des diplômés</a><br/>
+        <a href="{{ url_for('liste_num_request') }}">Nombre de diplômés</a><br/>
     </li>
     <li>
         <a href="{{ url_for('wiki_dept') }}">Liste des wikis des départements</a><br/>
     </li>
+    <li>
+        <a href="{{ url_for('moyenne_request') }}">Moyenne du nombre de diplômés chaque année par diplôme</a>
+    </li>
+
 </ol>
 <img class="insee_img" src="{{ url_for('static', filename='insee.jpg') }}"><br/>
 <footer>Lucas GOUDIN</footer>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Liste des numéros</title>
+    <title>Nombre de diplômés</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
     <script src="main.js"></script>
@@ -13,7 +13,7 @@
         <a href="/">Accueil</a><br/>
     </header>
     <br>
-    <h1>Liste des numéros d'étudiants :</h1>
+    <h1>Nombre de diplômés :</h1>
     <form method="POST" action="{{ url_for('liste_num') }}">
         <select name="diplome">
             {% for diplome in diplomes %}
@@ -39,5 +39,6 @@
         <input type="submit" value="Soumettre">
 
     </form>
+    <footer>Lucas GOUDIN</footer>
 </body>
 </html>

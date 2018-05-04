@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nombre de diplômés</title>
+    <title>Moyenne</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
     <script src="main.js"></script>
@@ -12,11 +12,9 @@
     <header>
         <a href="/">Accueil</a><br/>
     </header>
-    <br><br>
-    <h3>Nombre d'étudiants ayant eu leur {{diplome_name[0][0]}} en {{annee}} en {{dept_name[0][0]}} ({{age_name[0][0]}}) :</h3>
-    {% for num in nums %}
-        {{num[0]}}<br>
-    {% endfor %}
+    <br>
+    <h1>La moyenne du nombre de diplômés pour le diplôme "{{diplome[0][0]}}" est :</h1>
+    {{moyenne[0][0]}}
     <footer>Lucas GOUDIN</footer>
 </body>
 </html>

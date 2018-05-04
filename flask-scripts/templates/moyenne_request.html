@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nombre de diplômés</title>
+    <title>Moyenne</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" />
     <script src="main.js"></script>
@@ -12,11 +12,16 @@
     <header>
         <a href="/">Accueil</a><br/>
     </header>
-    <br><br>
-    <h3>Nombre d'étudiants ayant eu leur {{diplome_name[0][0]}} en {{annee}} en {{dept_name[0][0]}} ({{age_name[0][0]}}) :</h3>
-    {% for num in nums %}
-        {{num[0]}}<br>
-    {% endfor %}
+    <br>
+    <h1>Moyenne du nombre de diplômés</h1>
+    <form method="POST" action="{{ url_for('moyenne') }}">
+        <select name="diplome">
+            {% for niveau in niveaux %}
+                <option value="{{niveau[0]}}">{{niveau[1]}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Soumettre"/>
+    </form>
     <footer>Lucas GOUDIN</footer>
 </body>
 </html>
